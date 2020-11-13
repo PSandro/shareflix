@@ -1,1 +1,12 @@
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
+
+# Python #
 .venv
+*.py[cod] 
+*$py.class
