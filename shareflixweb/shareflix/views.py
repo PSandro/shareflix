@@ -84,3 +84,10 @@ def financial_claims_view(request):
             'total': request.user.get_total_open_amount(),
             }
     return render(request, "financial_claims.html", {"claims": claims, "statistic": statistic,})
+@login_required(login_url="/login/")
+def netflix_account_view(request):
+    account = request.user.account
+    print(account)
+    print("hi")
+
+    return render(request, "netflix_account.html", {"account": account, })
