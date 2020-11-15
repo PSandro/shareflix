@@ -8,7 +8,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
-from .forms import LoginForm
+from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
@@ -59,3 +59,18 @@ def login_view(request):
             msg = 'Error validating the form'    
 
     return render(request, "accounts/login.html", {"form": form, "msg" : msg})
+
+@login_required(login_url="/login/")
+def profile_change_view(request):
+    form = ProfileChangeForm(request.POST or None, instance=request.user)
+
+    msg = None
+
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return render(request, "profile.html", {"form": form, "msg" : msg})
+        else:
+            msg = 'Error validating the form'    
+
+    return render(request, "profile.html", {"form": form, "msg" : msg})
