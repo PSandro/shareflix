@@ -29,7 +29,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src="/static/assets/img/theme/team-4-800x800.jpg" class="rounded-circle">
+                    <img src="/static/assets/img/theme/netflix.png" class="rounded-circle">
                   </a>
                 </div>
               </div>
@@ -41,16 +41,8 @@
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                     <div>
-                      <span class="heading">22</span>
-                      <span class="description">Friends</span>
-                    </div>
-                    <div>
-                      <span class="heading">10</span>
-                      <span class="description">Photos</span>
-                    </div>
-                    <div>
-                      <span class="heading">89</span>
-                      <span class="description">Comments</span>
+			    <span class="heading">{{ request.user.date_joined|date:'d.m.Y' }}</span>
+                      <span class="description">Member since</span>
                     </div>
                   </div>
                 </div>

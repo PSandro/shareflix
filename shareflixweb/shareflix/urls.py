@@ -8,5 +8,6 @@ urlpatterns = [
     path('login/', views.login_view, name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path('profile/', views.profile_change_view, name="profile_change"),
+    path('financial_claims/', views.financial_claims_view, name="financial_claims"),
     re_path(r'^.*\.html', views.pages, name='pages')
 ]

@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
@@ -39,7 +40,7 @@ class NetflixGiftCard(models.Model):
             on_delete=models.PROTECT)
 class FinancialClaim(models.Model):
     def __str__(self):
-        return self.user + ": " + self.beginning + " - " + self.ending
+        return self.user.username + ": " + str(self.beginning) + " - " + str(self.ending)
 
     user = models.ForeignKey(
             settings.AUTH_USER_MODEL,
@@ -65,3 +66,7 @@ class User(AbstractUser):
             on_delete=models.SET_NULL,
             blank=True,
             null=True,)
+    def get_claims_by_status(self, status: FinancialClaim.Status):
+       return self.financialclaim_set.filter(status=status) 
+    def get_total_open_amount(self):
+       return self.get_claims_by_status(FinancialClaim.Status.OPEN).aggregate(Sum('amount'))['amount__sum']

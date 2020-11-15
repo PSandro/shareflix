@@ -16,7 +16,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Total open</h5>
-                      <span class="h2 font-weight-bold mb-0">10 €</span>
+		      <span class="h2 font-weight-bold mb-0">{{ statistic.total|floatformat:2 }} €</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -33,7 +33,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">open</h5>
-                      <span class="h2 font-weight-bold mb-0">5</span>
+		      <span class="h2 font-weight-bold mb-0">{{ statistic.open }}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -50,7 +50,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">ongoing</h5>
-                      <span class="h2 font-weight-bold mb-0">5</span>
+                      <span class="h2 font-weight-bold mb-0">{{ statistic.ongoing }}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -67,7 +67,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">paid</h5>
-                      <span class="h2 font-weight-bold mb-0">5</span>
+		      <span class="h2 font-weight-bold mb-0">{{ statistic.paid }}</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-success text-white rounded-circle shadow">
@@ -105,6 +105,7 @@
                   </tr>
                 </thead>
                 <tbody>
+	    {% for claim in claims %}
                   <tr>
                     <th scope="row">
                       <div class="media align-items-center">
@@ -112,103 +113,26 @@
                           <img alt="Image placeholder" src="/static/assets/img/theme/netflix.png">
                         </a>
                         <div class="media-body">
-                          <span class="mb-0 text-sm">example@example.com</span>
+				<span class="mb-0 text-sm">{{ claim.account }}</span>
                         </div>
                       </div>
                     </th>
                     <td>
-                      15.11.2020
+		      {{ claim.beginning }}
                     </td>
                     <td>
-                      15.11.2020
+		      {{ claim.ending }}
                     </td>
                     <td>
-			1€
-                    </td>
-                    <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-danger"></i> open
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <div class="media align-items-center">
-                        <a href="#" class="avatar rounded-circle mr-3">
-                          <img alt="Image placeholder" src="/static/assets/img/theme/netflix.png">
-                        </a>
-                        <div class="media-body">
-                          <span class="mb-0 text-sm">example@example.com</span>
-                        </div>
-                      </div>
-                    </th>
-                    <td>
-                      15.10.2020
-                    </td>
-                    <td>
-                      15.10.2020
-                    </td>
-                    <td>
-			1€
+			    {{ claim.amount }} 
                     </td>
                     <td>
                       <span class="badge badge-dot mr-4">
-                        <i class="bg-success"></i> paid
+			      <i class="{% if claim.status == "OP"%}bg-danger{% elif claim.status == "OG"%}bg-info{% elif claim.status == "PD"%}bg-success{% else %}{%endif%}"></i> {{ claim.get_status_display }}
                       </span>
                     </td>
                   </tr>
-                  <tr>
-                    <th scope="row">
-                      <div class="media align-items-center">
-                        <a href="#" class="avatar rounded-circle mr-3">
-                          <img alt="Image placeholder" src="/static/assets/img/theme/netflix.png">
-                        </a>
-                        <div class="media-body">
-                          <span class="mb-0 text-sm">example@example.com</span>
-                        </div>
-                      </div>
-                    </th>
-                    <td>
-                      15.11.2020
-                    </td>
-                    <td>
-                      15.11.2020
-                    </td>
-                    <td>
-			1€
-                    </td>
-                    <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-info"></i> ongoing
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <div class="media align-items-center">
-                        <a href="#" class="avatar rounded-circle mr-3">
-                          <img alt="Image placeholder" src="/static/assets/img/theme/netflix.png">
-                        </a>
-                        <div class="media-body">
-                          <span class="mb-0 text-sm">example@example.com</span>
-                        </div>
-                      </div>
-                    </th>
-                    <td>
-                      15.11.2020
-                    </td>
-                    <td>
-                      15.11.2020
-                    </td>
-                    <td>
-			1€
-                    </td>
-                    <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-info"></i> ongoing
-                      </span>
-                    </td>
-                  </tr>
+		  {%endfor%}
                 </tbody>
               </table>
             </div>

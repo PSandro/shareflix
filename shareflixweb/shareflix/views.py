@@ -74,3 +74,13 @@ def profile_change_view(request):
             msg = 'Error validating the form'    
 
     return render(request, "profile.html", {"form": form, "msg" : msg})
+@login_required(login_url="/login/")
+def financial_claims_view(request):
+    claims = request.user.financialclaim_set.all().order_by('-beginning')
+    statistic = {
+            'open': request.user.get_claims_by_status('OP').count,
+            'paid': request.user.get_claims_by_status('PD').count,
+            'ongoing': request.user.get_claims_by_status('OG').count,
+            'total': request.user.get_total_open_amount(),
+            }
+    return render(request, "financial_claims.html", {"claims": claims, "statistic": statistic,})
