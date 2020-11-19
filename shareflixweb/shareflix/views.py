@@ -80,7 +80,6 @@ def financial_claims_view(request):
     statistic = {
             'open': request.user.get_claims_by_status('OP').count,
             'paid': request.user.get_claims_by_status('PD').count,
-            'ongoing': request.user.get_claims_by_status('OG').count,
             'total': request.user.get_total_open_amount(),
             }
     return render(request, "financial_claims.html", {"claims": claims, "statistic": statistic,})

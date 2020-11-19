@@ -49,23 +49,6 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">ongoing</h5>
-                      <span class="h2 font-weight-bold mb-0">{{ statistic.ongoing }}</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6">
-              <div class="card card-stats mb-4 mb-xl-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">paid</h5>
 		      <span class="h2 font-weight-bold mb-0">{{ statistic.paid }}</span>
                     </div>
@@ -128,7 +111,7 @@
                     </td>
                     <td>
                       <span class="badge badge-dot mr-4">
-			      <i class="{% if claim.status == "OP"%}bg-danger{% elif claim.status == "OG"%}bg-info{% elif claim.status == "PD"%}bg-success{% else %}{%endif%}"></i> {{ claim.get_status_display }}
+			      <i class="{% if claim.status == "OP"%}bg-danger{% elif claim.status == "PD"%}bg-success{% else %}{%endif%}"></i> {{ claim.get_status_display }}
                       </span>
                     </td>
                   </tr>
@@ -136,7 +119,7 @@
                 </tbody>
               </table>
             </div>
-            <div class="card-footer py-4">
+	    <!--<div class="card-footer py-4">
               <nav aria-label="...">
                 <ul class="pagination justify-content-end mb-0">
                   <li class="page-item disabled">
@@ -161,6 +144,7 @@
                 </ul>
               </nav>
             </div>
+	    -->
           </div>
         </div>
       </div>

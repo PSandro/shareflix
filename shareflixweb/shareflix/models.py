@@ -49,13 +49,13 @@ class FinancialClaim(models.Model):
     ending = models.DateField(null=True,)
     amount = models.DecimalField(max_digits=10, decimal_places=2, null=True,)
     class Status(models.TextChoices):
-        ONGOING = 'OG', _('ongoing')
         OPEN = 'OP', _('open')
         PAID = 'PD', _('paid')
+
     status = models.CharField(
             max_length=2,
             choices=Status.choices,
-            default=Status.ONGOING,)
+            default=Status.OPEN,)
     account = models.ForeignKey(
             NetflixAccount,
             on_delete=models.PROTECT)
