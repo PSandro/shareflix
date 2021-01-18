@@ -38,7 +38,9 @@ class NetflixGiftCard(models.Model):
         max_length=3,
         choices=Currency.choices,
         default=Currency.TL)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True,)
+    original_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True,)
+    current_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True,)
+    worth_rate = models.DecimalField(max_digits=10, decimal_places=2, null=True,) # get the "worth" amount - example Euro. 15TL * 1,5465blabla = 2bla Euro
     account = models.ForeignKey(
         NetflixAccount,
         on_delete=models.PROTECT)
