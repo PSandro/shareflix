@@ -7,6 +7,8 @@ authors = ["Sandro Pischinger <mail@sandropischinger.de>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 Django = "^4.0"
+psycopg2 = "^2.9.2"
+django-environ = "^0.8.1"
 
 [tool.poetry.dev-dependencies]
 
