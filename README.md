@@ -1,5 +1,10 @@
 # ShareFlix - Manage your shared Netflix Account
 ---
+
+![grafik](https://user-images.githubusercontent.com/20563761/147394801-da29fe14-6d7c-485d-b1dd-821dee841ce9.png)
+
+![grafik](https://user-images.githubusercontent.com/20563761/147394808-887c509c-9ca5-4edf-87c7-77bbe53d55c8.png)
+
 ## Requirements
 ### Main
 
