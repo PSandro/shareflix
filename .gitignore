@@ -10,3 +10,4 @@ media
 .venv
 *.py[cod] 
 *$py.class
+shareflixweb/shareflixweb/.env

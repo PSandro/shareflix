@@ -139,4 +139,5 @@ dmypy.json
 cython_debug/
 
 
-/shareflixweb/db.sqlite3
+shareflixweb/db.sqlite3
+shareflixweb/.env
