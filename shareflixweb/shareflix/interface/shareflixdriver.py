@@ -1,3 +1,4 @@
+from datetime import datetime
 from sys import exit, stdout
 from time import sleep
 from enum import Enum
@@ -21,6 +22,7 @@ logger.addHandler(handler)
 
 LOGIN_URL = "https://www.netflix.com/login"
 CHANGE_PLAN_URL = "https://www.netflix.com/ChangePlan"
+ACCOUNT_URL = "https://www.netflix.com/YourAccount"
 
 
 class Plan(Enum):
@@ -29,10 +31,19 @@ class Plan(Enum):
     PREMIUM = 2
 
 
+class AccountInformation:
+    plan: Plan = None
+    balance = 0.0
+    paidUntil = None
+    nextPlan: Plan = None
+    planChangeDate = None
+
+
 class ShareflixDriver:
     driver = None
     username = None
     password = None
+    account: AccountInformation = AccountInformation()
 
     def __init__(self, username, password):
         self.username = username
@@ -76,6 +87,25 @@ class ShareflixDriver:
             EC.presence_of_element_located((By.XPATH, "//div[@class='profile-icon']")))
         profile.click()
         logger.info("Profile selected")
+
+    def fetch_account_information(self):
+        # switch to Account page
+        if self.driver.current_url.casefold() != ACCOUNT_URL.casefold():
+            self.driver.get(ACCOUNT_URL)
+
+        plan_name = self.driver.find_element(By.XPATH, '//div[@data-uia="plan-label"]/b').text
+        self.account.plan = plan_name
+
+        next_plan_items = self.driver.find_elements(By.XPATH, '//span[@id="automation-NextPlanItem"]/b')
+        self.account.nextPlan = next_plan_items[0].text
+
+        self.account.planChangeDate = next_plan_items[1].text
+
+        self.account.balance = self.driver.find_element(By.XPATH,
+                                                        '//div[@data-uia="gift-credit-content-headline"]').text
+
+        self.account.paidUntil = self.driver.find_element(By.XPATH,
+                                                          '//div[@data-uia="gift-credit-content-subhead"]').text
 
     def change_plan(self, plan: Plan = Plan.PREMIUM):
         logger.info("Changing plan to {}".format(plan.name))
