@@ -1,3 +1,5 @@
+import base64
+import os
 from datetime import datetime
 from sys import exit, stdout
 from time import sleep
@@ -24,6 +26,9 @@ LOGIN_URL = "https://www.netflix.com/login"
 CHANGE_PLAN_URL = "https://www.netflix.com/ChangePlan"
 ACCOUNT_URL = "https://www.netflix.com/YourAccount"
 
+# TODO: create this folder in Dockerfile
+PROFILES_DIR = "/tmp/shareflix/profiles/"
+
 
 class Plan(Enum):
     BASIC = 0
@@ -48,6 +53,9 @@ class ShareflixDriver:
     def __init__(self, username, password):
         self.username = username
         self.password = password
+
+    def profile_path(self):
+        return PROFILES_DIR + base64.b64encode(self.username.encode()).decode()
 
     def start_webdriver(self):
         options = Options()
