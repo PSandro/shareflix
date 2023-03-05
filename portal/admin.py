@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User, Account, GiftCard, Claim
+from .models import User, Account, GiftCard, Transaction
 
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
@@ -17,5 +17,5 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(Account)
 admin.site.register(GiftCard)
-admin.site.register(Claim)
+admin.site.register(Transaction)
 admin.site.register(User, CustomUserAdmin)

@@ -30,17 +30,13 @@ class GiftCard(models.Model):
             on_delete=models.PROTECT)
 
 
-class Claim(models.Model):
+class Transaction(models.Model):
     user = models.ForeignKey(
             settings.AUTH_USER_MODEL,
             on_delete=models.CASCADE,)
     date = models.DateField()                
     amount = models.DecimalField(max_digits=10, decimal_places=2, null=True,)
-    paid = models.BooleanField(default=False)
     description = models.CharField(max_length=200, null=True)
-    account = models.ForeignKey(
-            Account,
-            on_delete=models.PROTECT)
 
 class User(AbstractUser):
 

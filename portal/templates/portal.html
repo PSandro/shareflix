@@ -9,9 +9,9 @@
   </ul>
 </section>
 {% endif %}
-{% if claims %}
+{% if transactions %}
 <section>
-  <h2>Financial Claims</h2>
+  <h2>Transactions</h2>
   {% load humanize %}
   <p>toal open: <mark>{{ open_sum|floatformat:2|intcomma}} €</mark></p>
   <table>
@@ -20,16 +20,14 @@
         <td>date</td>
         <td>description</td>
         <td>amount</td>
-        <td>paid?</td>
       </tr>
     </thead>
     <tbody>
-      {% for claim in claims %}
+      {% for transaction in transactions %}
       <tr>
-        <td>{{claim.date}}</td>
-        <td>{%firstof claim.description 'n.a.'%}</td>
-        <td>{{claim.amount}} €</td>
-        <td>{{claim.paid}}</td>
+        <td>{{transaction.date}}</td>
+        <td>{%firstof transaction.description 'n.a.'%}</td>
+        <td>{{transaction.amount}} €</td>
       </tr>
       {% endfor %}
     </tbody>

@@ -14,13 +14,13 @@ def portal(request):
 
     user = request.user
     account = user.account
-    claims = user.claim_set.order_by('paid', '-date')
-    open_sum = user.claim_set.filter(paid=False).aggregate(open_sum=Sum('amount'))['open_sum']
+    transactions = user.transaction_set.order_by('-date')
+    open_sum = transactions.aggregate(open_sum=Sum('amount'))['open_sum']
     giftcards = account.giftcard_set.order_by('-date') if account else None
 
     context = {
             'account': user.account,
-            'claims': claims,
+            'transactions': transactions,
             'open_sum': open_sum,
             'giftcards': giftcards
             }
