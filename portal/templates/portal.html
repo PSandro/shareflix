@@ -12,7 +12,8 @@
 {% if claims %}
 <section>
   <h2>Financial Claims</h2>
-  <p>toal open: <mark>{{ open_sum }} €</mark></p>
+  {% load humanize %}
+  <p>toal open: <mark>{{ open_sum|floatformat:2|intcomma}} €</mark></p>
   <table>
     <thead>
       <tr>

@@ -34,6 +34,7 @@ CSRF_TRUSTED_ORIGINS = [environ.get('CSRF_TRUSTED_ORIGIN')] if 'CSRF_TRUSTED_ORI
 
 INSTALLED_APPS = [
     "portal.apps.PortalConfig",
+    "django.contrib.humanize",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
