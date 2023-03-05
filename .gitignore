@@ -10,5 +10,3 @@ media
 .venv
 *.py[cod] 
 *$py.class
-shareflixweb/shareflixweb/.env
-shareflixweb/shareflix/interface/demo.py
