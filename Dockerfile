@@ -1,4 +1,6 @@
 FROM python:latest
+RUN groupadd -r -g 1337 user && useradd -r -u 1337 -g user user
+USER user
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 EXPOSE 8000
