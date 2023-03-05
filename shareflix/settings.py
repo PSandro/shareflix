@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "portal.apps.PortalConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -80,6 +81,10 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'portal.User'
+LOGIN_REDIRECT_URL = '/portal/'
+LOGIN_URL = '/login/'
+LOGOUT_REDIRECT_URL = '/logout/'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -105,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Berlin"
 
 USE_I18N = True
 

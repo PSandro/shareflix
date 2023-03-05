@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+{% if account %}
+<section>
+  <h2>Account Info</h2>
+  <ul>
+    <li><strong>email:</strong> <kbd>{{ account.email }}</kbd></li>
+    <li><strong>password: </strong><kbd>{{ account.password }}</kbd></li>
+  </ul>
+</section>
+{% endif %}
+{% if claims %}
+<section>
+  <h2>Financial Claims</h2>
+  <p>toal open: <mark>{{ open_sum }} €</mark></p>
+  <table>
+    <thead>
+      <tr>
+        <td>date</td>
+        <td>description</td>
+        <td>amount</td>
+        <td>paid?</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for claim in claims %}
+      <tr>
+        <td>{{claim.date}}</td>
+        <td>{%firstof claim.description 'n.a.'%}</td>
+        <td>{{claim.amount}} €</td>
+        <td>{{claim.paid}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+{% if giftcards %}
+<section>
+  <h2>Gift Card History</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>date</td>
+        <td>amount</td>
+        <td>buyer</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for card in giftcards %}
+      <tr>
+        <td>{{card.date}}</td>
+        <td>{{card.amount}} €</td>
+        <td>{% firstof card.buyer.first_name card.buyer.username 'unknown' %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+{% endblock %}
+

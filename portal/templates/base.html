@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>shareflix</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+  </head>
+  <body>
+    <nav class="container-fluid">
+      <ul>
+        <li><a href="{% url 'index' %}"><strong>ShareFlix</strong></a></li>
+      </ul>
+      <ul>
+      </ul>
+      <ul>
+        {% if user.is_authenticated %}
+        <li><span>{% firstof user.first_name user.username %}</span>
+        <li><a href="{% url 'logout' %}" role="button">Logout</a>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <main class="container">
+    {% block content %}{% endblock content %}
+    </main>
+
+    <footer class="container-fluid">
+    {% block footer %}{% endblock footer %}
+    </footer>
+  </body>
+</html>
