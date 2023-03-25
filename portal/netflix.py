@@ -38,14 +38,8 @@ class Plan(Enum):
 
 class Netflix:
     driver = None
-    username = None
-    password = None
 
-
-    def __init__(self, username, password, headless=True, profile_dir=None):
-        self.username = username
-        self.password = password
-
+    def __init__(self, headless=True, profile_dir=None):
         options = Options()
         if headless:
             options.add_argument('--headless')
@@ -59,19 +53,19 @@ class Netflix:
         logger.info("chrome driver started")
         self.driver.implicitly_wait(3)
 
-    def login(self):
+    def login(self, username, password):
         logger.info("proceeding to login to {}".format(LOGIN_URL))
         # Visit login page of netflix
         self.driver.get(LOGIN_URL)
         if self.driver.current_url.casefold().endswith("/browse"):
             logger.info("already logged in")
         else:
-            logger.info("loggin in with user %s", self.username)
+            logger.info("loggin in with user %s", username)
             # Enter user credentials
             user_el = self.driver.find_element(By.ID, "id_userLoginId")
-            user_el.send_keys(self.username)
+            user_el.send_keys(username)
             pass_el = self.driver.find_element(By.ID, "id_password")
-            pass_el.send_keys(self.password)
+            pass_el.send_keys(password)
 
             # Wait a few seconds before logging in to avoid botlike behavior
             sleep(1)
