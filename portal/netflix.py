@@ -74,10 +74,21 @@ class Netflix:
             signin_el = self.driver.find_element(By.XPATH, "//button[@class='btn login-button btn-submit btn-small']")
             signin_el.click()
 
-        if self.driver.current_url.casefold().endswith("/browse"):
-            logger.info("Signin complete")
+        self._select_profile()
 
-    def select_profile(self):
+    def _select_profile(self):
+
+        def is_main_view():
+            try:
+                self.driver.find_element(By.XPATH, '//*[@id="main-view"]')
+            except NoSuchElementException:
+                return False
+            return True
+
+        if is_main_view():
+            logger.info("already in main view")
+            return
+
         logger.info("Selecting Profile")
         # Select first profile available
         profile = WebDriverWait(self.driver, 20).until(
