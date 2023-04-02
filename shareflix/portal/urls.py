@@ -13,5 +13,6 @@ urlpatterns = [
         path(
             "logout/",
             auth_views.LogoutView.as_view(template_name="logout.html"),
-            name="logout")
+            name="logout"),
+        path("api/change_plan", views.change_plan, name="login")
         ]
