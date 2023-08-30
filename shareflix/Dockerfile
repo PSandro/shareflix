@@ -9,4 +9,4 @@ COPY . /app
 RUN groupadd -r -g 1337 user && useradd -r -u 1337 -g user user
 RUN chown -R user:user /app
 USER user
-CMD ["gunicorn", "shareflix.wsgi"]
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "shareflix.wsgi"]
