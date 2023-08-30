@@ -2,3 +2,4 @@ django
 django-configurations
 requests
 selenium
+gunicorn

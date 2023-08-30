@@ -9,5 +9,4 @@ COPY . /app
 RUN groupadd -r -g 1337 user && useradd -r -u 1337 -g user user
 RUN chown -R user:user /app
 USER user
-ENTRYPOINT ["python3"] 
-CMD ["manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "shareflix.wsgi"]

@@ -126,7 +126,7 @@ class Dev(Common):
     DEBUG = True
 
 
-class Production(Common):
+class Prod(Common):
     DEBUG = False
 
     ALLOWED_HOSTS = [environ.get('ALLOWED_HOST')]
