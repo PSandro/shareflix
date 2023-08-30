@@ -41,4 +41,4 @@ def change_plan(request):
     acc_info = nf.account_information()
     nf.quit()
 
-    return HttpReponse(json.dumps(acc_info), mimetype='application/json')
+    return HttpResponse(json.dumps(acc_info), mimetype='application/json')
