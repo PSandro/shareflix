@@ -1,8 +1,16 @@
 services:
   shareflix:
     build: ./shareflix
-    command: python manage.py runserver 0.0.0.0:8000
+    command: manage.py runserver 0.0.0.0:8000
     volumes:
       - ./db:/app/db
     ports:
       - "127.0.0.1:8000:8000"
+    links:
+      - "selenium"
+  selenium:
+    image: selenium/standalone-chrome
+    shm_size: 2gb
+    ports:
+      - "127.0.0.1:7900:7900"
+
